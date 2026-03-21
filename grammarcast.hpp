@@ -28,9 +28,10 @@ void GrammarCast(Grammar& g) {
             continue;
           }
           // rule.right in (new_alphabet)* (?)
+          // epsilon тоже здесь
           bool append_flag = true;
           for (Symbol& b : rule.right) {
-            if (new_alphabet.find(b) == new_alphabet.end()) {
+            if (new_alphabet.find(b) == new_alphabet.end() && b != epsilon) {
               append_flag = false;
               break;
             }
@@ -123,7 +124,7 @@ void GrammarCast(Grammar& g) {
 
   // 3) добавление S' -> S$
   {
-    Symbol new_start_symbol = g.start_symbol + "'";
+    Symbol new_start_symbol = g.start_symbol + "^";
     Symbol marker_eof = "$";
     g.nonterminals.push_back(new_start_symbol);
     g.nonterminals.push_back(marker_eof);
