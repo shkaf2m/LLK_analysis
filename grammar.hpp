@@ -4,17 +4,23 @@
 #include <string>
 #include <vector>
 
+using Symbol = std::string;
+
+using Word = std::vector<Symbol>;
+
 struct Rule {
   int order;
-  std::string left;
-  std::vector<std::string> right;
+  Symbol left;
+  Word right;
   Rule() = default;
 };
 
+const std::string epsilon = "epsilon";
+
 struct Grammar {
-  std::vector<std::string> terminals;
-  std::vector<std::string> nonterminals;
-  std::string start_symbol;
+  std::vector<Symbol> terminals;
+  std::vector<Symbol> nonterminals;
+  Symbol start_symbol;
   std::vector<Rule> rules;
   Grammar() = default;
 };

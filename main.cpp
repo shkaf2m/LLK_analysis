@@ -3,6 +3,7 @@
 #include <vector>
 #include "parser.hpp"
 #include "grammar.hpp"
+#include "grammarcast.hpp"
 
 
 void PrintGrammar(Grammar& g) {
@@ -24,6 +25,11 @@ void PrintGrammar(Grammar& g) {
 
 int main() {
   Grammar grammar = Parser::ParseFile("grammar1.xml");
+  std::cout << "OLD GRAMMAR: \n";
   PrintGrammar(grammar);
+  GrammarCast(grammar);
+  std::cout << "\nNEW GRAMMAR: \n";
+  PrintGrammar(grammar);
+  // std::cout << Tester::GrammarTest(grammar, 1) << '\n';
   return 0;
 }
