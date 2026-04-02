@@ -5,8 +5,6 @@
 #include <set>
 
 
-
-
 struct FirstCalculator {
   Grammar grammar;
   int k;

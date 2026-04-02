@@ -123,17 +123,17 @@ void GrammarCast(Grammar& g) {
   }
 
   // 3) добавление S' -> S$
-  {
-    Symbol new_start_symbol = g.start_symbol + "^";
-    Symbol marker_eof = "$";
-    g.nonterminals.push_back(new_start_symbol);
-    g.nonterminals.push_back(marker_eof);
+  // {
+  //   Symbol new_start_symbol = g.start_symbol + "^";
+  //   Symbol marker_eof = "$";
+  //   g.nonterminals.push_back(new_start_symbol);
+  //   g.nonterminals.push_back(marker_eof);
 
 
-    Rule new_rule = Rule{};
-    new_rule.left = new_start_symbol;
-    new_rule.right = {g.start_symbol, marker_eof};
-    g.rules.push_back(new_rule);
-    g.start_symbol = new_start_symbol;
-  }
+  //   Rule new_rule = Rule{};
+  //   new_rule.left = new_start_symbol;
+  //   new_rule.right = {g.start_symbol, marker_eof};
+  //   g.rules.push_back(new_rule);
+  //   g.start_symbol = new_start_symbol;
+  // }
 }

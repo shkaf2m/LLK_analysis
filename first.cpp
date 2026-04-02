@@ -13,9 +13,25 @@ std::set<Word> FirstCalculator::RightSumK(std::set<Word>& lhs, std::set<Word>& r
       if (z.size() <= k) {
         result.insert(z);
       } else if (flag) {
-        for (Word temp_word : CalcFirst(z)) {
-          result.insert(temp_word);
+        // односимвольные - посчитаны.
+        // for (Word temp_word : CalcFirst(z)) {
+        //   result.insert(temp_word);
+        // }
+
+
+        Word new_word;
+        for (int i = 0; i < k; ++i) {
+          new_word.push_back(z[i]);
         }
+        result.insert(new_word);
+      } else {
+        // flag = false, значит вычисляем для однобуквенных
+        // просто обрезуем слово до k
+        Word new_word;
+        for (int i = 0; i < k; ++i) {
+          new_word.push_back(z[i]);
+        }
+        result.insert(new_word);
       }
       
     }
@@ -80,7 +96,7 @@ FirstCalculator::FirstCalculator(Grammar g, int k) : grammar(g), k(k) {
     for (auto& s : g.terminals) {
       new_F_map[s] = F_map[s];
     }
-    new_F_map[epsilon] = new_F_map[epsilon];
+    new_F_map[epsilon] = F_map[epsilon];
     for (auto& s : g.nonterminals) {
       new_F_map[s] = F_map[s];
     }

@@ -16,7 +16,11 @@ add_library(firstlib STATIC first.hpp first.cpp)
 target_include_directories(firstlib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(firstlib PUBLIC grammarlib)
 
+add_library(tablelib STATIC tables.hpp tables.cpp)
+target_include_directories(tablelib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(tablelib PUBLIC grammarlib firstlib)
+
 add_executable(my_app main.cpp)
 
 target_include_directories(my_app PRIVATE pugixml/src)
-target_link_libraries(my_app PRIVATE pugixml grammarlib parserlib firstlib)
+target_link_libraries(my_app PRIVATE pugixml grammarlib parserlib firstlib tablelib)

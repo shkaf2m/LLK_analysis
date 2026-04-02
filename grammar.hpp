@@ -3,12 +3,21 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <set>
 
 const std::string epsilon = "epsilon";
 
 using Symbol = std::string;
 
+
 using Word = std::vector<Symbol>;
+
+std::ostream& operator<<(std::ostream&, Word);
+std::ostream& operator<<(std::ostream&, std::vector<Word>);
+std::ostream& operator<<(std::ostream&, std::set<Word>);
+
+
 
 int WordSize(Word);
 
@@ -21,6 +30,7 @@ struct Rule {
   Rule() = default;
 };
 
+std::ostream& operator<<(std::ostream&, Rule);
 
 
 struct Grammar {
