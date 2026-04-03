@@ -5,6 +5,7 @@
 
 struct Parser {
   static Grammar ParseFile(std::string);
+  static std::vector<Symbol> ParseWord(std::string);
 };
 
 #endif

@@ -85,3 +85,7 @@ bool Grammar::IsTerminal(Symbol value) {
   }
   return false;
 }
+
+bool operator==(Rule lhs, Rule rhs) {
+  return (lhs.left == rhs.left) && (lhs.right == rhs.right);
+}

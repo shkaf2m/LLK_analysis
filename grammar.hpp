@@ -24,11 +24,13 @@ int WordSize(Word);
 Word operator+(Word, Word);
 
 struct Rule {
-  int order;
+  // int order;
   Symbol left;
   Word right;
   Rule() = default;
 };
+
+bool operator==(Rule, Rule);
 
 std::ostream& operator<<(std::ostream&, Rule);
 

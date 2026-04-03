@@ -28,13 +28,33 @@ Grammar Parser::ParseFile(std::string filename) {
   result_grammar.start_symbol = grammar_node.child("SS").text().get();
 
   // rules
+  int rule_id = 0;
   for (pugi::xml_node& rule_node : grammar_node.children("PR")) {
     Rule new_rule;
     new_rule.left = rule_node.child("left").child("PRS").text().get();
     for (pugi::xml_node& right_node : rule_node.child("right").children("PRS")) {
       new_rule.right.push_back(right_node.text().get());
     }
+    // new_rule.order = rule_id;
+    ++rule_id;
     result_grammar.rules.push_back(new_rule);
   }
   return result_grammar;
+}
+
+std::vector<Symbol> Parser::ParseWord(std::string filename) {
+  pugi::xml_document doc;
+  pugi::xml_parse_result load_res = doc.load_file(filename.c_str());
+  if (!load_res) {
+    // incorrect file
+    std::cout << "Parse Error: " << load_res.description() << '\n';
+    return std::vector<Symbol>{};
+  }
+
+  pugi::xml_node grammar_node = doc.child("word");
+  std::vector<Symbol> result;
+  for (pugi::xml_node& node : grammar_node.children("TS")) {
+    result.push_back(node.text().get());
+  }
+  return result;
 }
